@@ -67,14 +67,6 @@ export class DragAndDropService {
     private dropTargets: DropTarget[] = [];
     private lastDropTarget: DropTarget;
 
-    private ePinnedIcon = svgFactory.createPinIcon();
-    private ePlusIcon = svgFactory.createPlusIcon();
-    private eHiddenIcon = svgFactory.createColumnHiddenIcon();
-    private eMoveIcon = svgFactory.createMoveIcon();
-    private eLeftIcon = svgFactory.createLeftIcon();
-    private eRightIcon = svgFactory.createRightIcon();
-    private eGroupIcon = svgFactory.createGroupIcon();
-
     private setBeans(@Qualifier('loggerFactory') loggerFactory: LoggerFactory) {
         this.logger = loggerFactory.create('OldToolPanelDragAndDropService');
         this.eBody = <HTMLElement> document.querySelector('body');
@@ -289,13 +281,13 @@ export class DragAndDropService {
         _.removeAllChildren(this.eGhostIcon);
         var eIcon: HTMLElement;
         switch (iconName) {
-            case DragAndDropService.ICON_ADD: eIcon = this.ePlusIcon; break;
-            case DragAndDropService.ICON_PINNED: eIcon = this.ePinnedIcon; break;
-            case DragAndDropService.ICON_MOVE: eIcon = this.eMoveIcon; break;
-            case DragAndDropService.ICON_LEFT: eIcon = this.eLeftIcon; break;
-            case DragAndDropService.ICON_RIGHT: eIcon = this.eRightIcon; break;
-            case DragAndDropService.ICON_GROUP: eIcon = this.eGroupIcon; break;
-            default: eIcon = this.eHiddenIcon; break;
+            case DragAndDropService.ICON_ADD: eIcon = _.createIconNoSpan('plus', this.gridOptionsWrapper, null, svgFactory.createPlusIcon); break;
+            case DragAndDropService.ICON_PINNED: eIcon = _.createIconNoSpan('pin', this.gridOptionsWrapper, null, svgFactory.createPinIcon); break;
+            case DragAndDropService.ICON_MOVE: eIcon = _.createIconNoSpan('move', this.gridOptionsWrapper, null, svgFactory.createMoveIcon); break;
+            case DragAndDropService.ICON_LEFT: eIcon = _.createIconNoSpan('left', this.gridOptionsWrapper, null, svgFactory.createLeftIcon); break;
+            case DragAndDropService.ICON_RIGHT: eIcon = _.createIconNoSpan('right', this.gridOptionsWrapper, null, svgFactory.createRightIcon); break;
+            case DragAndDropService.ICON_GROUP: eIcon = _.createIconNoSpan('group', this.gridOptionsWrapper, null, svgFactory.createGroupIcon); break;
+            default: eIcon = _.createIconNoSpan('hidden', this.gridOptionsWrapper, null, svgFactory.createColumnHiddenIcon); break;
         }
         this.eGhostIcon.appendChild(eIcon);
         _.addOrRemoveCssClass(this.eGhostIcon, 'ag-shake-left-to-right', shake);
