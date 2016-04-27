@@ -131,6 +131,12 @@ export interface ColDef extends AbstractColDef {
     /** Set to true if you don't want to be able to aggregate by this column */
     suppressAggregation?: boolean;
 
+    /** Set to true if you don't want to be able to pin by this column */
+    suppressPinSubMenu?: boolean;
+
+    /** Set to true if you don't want to be able to show tool panel by this column */
+    suppressToolPanel?: boolean;
+
     /** Set to true if this col is editable, otherwise false. Can also be a function to have different rows editable. */
     editable?: boolean | (Function);
 
