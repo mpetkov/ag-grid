@@ -87,6 +87,20 @@ var HeaderRenderer = (function () {
         this.pinnedRightContainer.onIndividualColumnResized(column);
         this.centerContainer.onIndividualColumnResized(column);
     };
+    HeaderRenderer.prototype.getHeaderCellForColumn = function (column) {
+        var eCell;
+        switch (column.getPinned()) {
+            case 'left':
+                eCell = this.pinnedLeftContainer.getCellForCol(column);
+                break;
+            case 'right':
+                eCell = this.pinnedLeftContainer.getCellForCol(column);
+                break;
+            default:
+                eCell = this.centerContainer.getCellForCol(column);
+        }
+        return eCell;
+    };
     __decorate([
         context_1.Autowired('gridOptionsWrapper'), 
         __metadata('design:type', gridOptionsWrapper_1.GridOptionsWrapper)

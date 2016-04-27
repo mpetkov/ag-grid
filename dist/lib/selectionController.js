@@ -169,6 +169,7 @@ var SelectionController = (function () {
         // that we pick up, however it's good to clean it down, as we are still
         // left with entries pointing to 'undefined'
         this.selectedNodes = {};
+        this.eventService.dispatchEvent(events_1.Events.EVENT_SELECTION_CHANGED);
     };
     SelectionController.prototype.selectAllRowNodes = function () {
         if (this.rowModel.getType() !== constants_1.Constants.ROW_MODEL_TYPE_NORMAL) {

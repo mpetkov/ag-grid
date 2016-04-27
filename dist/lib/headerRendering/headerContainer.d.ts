@@ -20,7 +20,9 @@ export declare class HeaderContainer {
     init(): void;
     removeAllChildren(): void;
     insertHeaderRowsIntoContainer(): void;
+    getCellForCol(column: Column): HTMLElement;
     private addTreeNodesAtDept(cellTree, dept, result);
     private createHeaderElement(columnGroupChild);
     onIndividualColumnResized(column: Column): void;
+    private forEachHeaderElement(callback);
 }

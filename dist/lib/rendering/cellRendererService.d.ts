@@ -16,6 +16,7 @@ export declare class CellRendererService {
     useCellRenderer(cellRendererKey: {
         new (): ICellRenderer;
     } | ICellRendererFunc | string, eTarget: HTMLElement, params: any): ICellRenderer;
+    private checkForDeprecatedItems(cellRenderer);
     private doesImplementICellRenderer(cellRenderer);
     private lookUpCellRenderer(cellRendererKey);
 }

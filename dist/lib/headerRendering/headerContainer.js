@@ -28,7 +28,7 @@ var gridPanel_1 = require("../gridPanel/gridPanel");
 var context_3 = require("../context/context");
 var HeaderContainer = (function () {
     function HeaderContainer(eContainer, eViewport, eRoot, pinned) {
-        this.headerElements = [];
+        this.headerElements = {};
         this.eContainer = eContainer;
         this.eRoot = eRoot;
         this.pinned = pinned;
@@ -62,10 +62,8 @@ var HeaderContainer = (function () {
         this.dragAndDropService.addDropTarget(this.dropTarget);
     };
     HeaderContainer.prototype.removeAllChildren = function () {
-        this.headerElements.forEach(function (headerElement) {
-            headerElement.destroy();
-        });
-        this.headerElements.length = 0;
+        this.forEachHeaderElement(function (headerElement) { return headerElement.destroy(); });
+        this.headerElements = {};
         utils_1.Utils.removeAllChildren(this.eContainer);
     };
     HeaderContainer.prototype.insertHeaderRowsIntoContainer = function () {
@@ -92,12 +90,28 @@ var HeaderContainer = (function () {
                 if (child instanceof columnGroup_1.ColumnGroup && child.getDisplayedChildren().length == 0) {
                     return;
                 }
+                var headerId;
+                if (child instanceof columnGroup_1.ColumnGroup) {
+                    headerId = child.getGroupId();
+                }
+                else {
+                    headerId = child.getDefinition().field;
+                }
                 var renderedHeaderElement = _this.createHeaderElement(child);
-                _this.headerElements.push(renderedHeaderElement);
+                _this.headerElements[headerId] = renderedHeaderElement;
                 var eGui = renderedHeaderElement.getGui();
                 eRow.appendChild(eGui);
             });
             this.eContainer.appendChild(eRow);
+        }
+    };
+    HeaderContainer.prototype.getCellForCol = function (column) {
+        var headerElement = this.headerElements[column.getColId()];
+        if (headerElement) {
+            return headerElement.getGui();
+        }
+        else {
+            return null;
         }
     };
     HeaderContainer.prototype.addTreeNodesAtDept = function (cellTree, dept, result) {
@@ -126,8 +140,13 @@ var HeaderContainer = (function () {
         return result;
     };
     HeaderContainer.prototype.onIndividualColumnResized = function (column) {
-        this.headerElements.forEach(function (headerElement) {
-            headerElement.onIndividualColumnResized(column);
+        this.forEachHeaderElement(function (headerElement) { return headerElement.onIndividualColumnResized(column); });
+    };
+    HeaderContainer.prototype.forEachHeaderElement = function (callback) {
+        utils_1.Utils.iterateObject(this.headerElements, function (key, headerElement) {
+            if (headerElement) {
+                callback(headerElement);
+            }
         });
     };
     __decorate([

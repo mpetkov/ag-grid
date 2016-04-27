@@ -6,5 +6,9 @@ import { Column } from "../entities/column";
 export declare class AutoWidthCalculator {
     private rowRenderer;
     private gridPanel;
+    private headerRenderer;
+    private enterprise;
     getPreferredWidthForColumn(column: Column): number;
+    private getPreferredWidth(eContainer, eOriginalCells);
+    private getCloneParent(eCell);
 }

@@ -19,4 +19,5 @@ export declare class HeaderRenderer {
     refreshHeader(): void;
     setPinnedColContainerWidth(): void;
     onIndividualColumnResized(column: Column): void;
+    getHeaderCellForColumn(column: Column): HTMLElement;
 }

@@ -46,13 +46,6 @@ export declare class DragAndDropService {
     private eBody;
     private dropTargets;
     private lastDropTarget;
-    private ePinnedIcon;
-    private ePlusIcon;
-    private eHiddenIcon;
-    private eMoveIcon;
-    private eLeftIcon;
-    private eRightIcon;
-    private eGroupIcon;
     private setBeans(loggerFactory);
     addDragSource(params: DragSource): void;
     nudge(): void;

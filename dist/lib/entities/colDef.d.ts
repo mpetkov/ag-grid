@@ -11,6 +11,8 @@ import { ICellRendererFunc, ICellRenderer } from "../rendering/cellRenderers/iCe
 export interface AbstractColDef {
     /** The name to render in the column header */
     headerName?: string;
+    /** The field of the row to get the cells data from */
+    field?: string;
     /** Whether to show the column when the group is open / closed. */
     columnGroupShow?: string;
     /** CSS class for the header */
@@ -33,8 +35,6 @@ export interface ColDef extends AbstractColDef {
     sortedAt?: number;
     /** The sort order, provide an array with any of the following in any order ['asc','desc',null] */
     sortingOrder?: string[];
-    /** The field of the row to get the cells data from */
-    field?: string;
     /** Expression or function to get the cells value. */
     headerValueGetter?: string | Function;
     /** Set to true for this column to be hidden. Naturally you might think, it would make more sense to call this field 'visible' and mark it false to hide,
@@ -105,6 +105,10 @@ export interface ColDef extends AbstractColDef {
     suppressRowGroup?: boolean;
     /** Set to true if you don't want to be able to aggregate by this column */
     suppressAggregation?: boolean;
+    /** Set to true if you don't want to be able to pin by this column */
+    suppressPinSubMenu?: boolean;
+    /** Set to true if you don't want to be able to show tool panel by this column */
+    suppressToolPanel?: boolean;
     /** Set to true if this col is editable, otherwise false. Can also be a function to have different rows editable. */
     editable?: boolean | (Function);
     /** Callbacks for editing.See editing section for further details. */
