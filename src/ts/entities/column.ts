@@ -52,7 +52,7 @@ export class Column implements ColumnGroupChild, OriginalColumnGroupChild {
     @Autowired('gridOptionsWrapper') private gridOptionsWrapper: GridOptionsWrapper;
     @Autowired('columnUtils') private columnUtils: ColumnUtils;
 
-    private colDef: ColDef;
+    public colDef: ColDef;
     private colId: any;
 
     private actualWidth: any;

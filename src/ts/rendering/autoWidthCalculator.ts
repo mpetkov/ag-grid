@@ -42,7 +42,7 @@ export class AutoWidthCalculator {
         // we add extra space so that the sorting icon has room
         var eHeaderWidth = this.getPreferredWidth(eHeaderContainer, eOriginalHeaderCells) + 10;
         // if grid is using enterprise, we need to add extra space for the menu icon
-        if(this.enterprise) {
+        if (this.enterprise && !column.colDef.suppressMenu) {
             eHeaderWidth += 20;
         }
 
