@@ -27,7 +27,7 @@ export declare class Column implements ColumnGroupChild, OriginalColumnGroupChil
     static SORT_DESC: string;
     private gridOptionsWrapper;
     private columnUtils;
-    private colDef;
+    colDef: ColDef;
     private colId;
     private actualWidth;
     private visible;
